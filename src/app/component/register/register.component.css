@@ -1,0 +1,56 @@
+:host {
+    background-color: #000000;
+    display:inline-block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to the full viewport height */
+    width: 100%;
+  }
+  
+  .login-frame {
+    margin-left: 700px;
+    text-align: center;
+    border: 1px solid #ddd; /* Light Gray Border */
+    padding: 30px; /* Add padding to create a frame around the content */
+    border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+    background-color: orange; /* White background inside the frame */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle box shadow */
+    max-width: 400px; /* Set a maximum width for the frame */
+    width: 100%; /* Ensure responsiveness */
+  }
+  
+  label {
+    color: #000000; /* Blue */
+    font-size: 1.5rem; /* Enlarge the text */
+    display: block; /* Ensure each label is on a new line */
+    margin-bottom: 1rem; /* Add space below each label */
+  }
+  
+  input {
+    width: 100%;
+    padding: 1rem; /* Increase padding for input fields */
+    margin-bottom: 1.5rem;
+    border: 1px solid #000000; /* Blue border */
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 1.2rem; /* Enlarge the font size */
+  }
+  
+  button {
+    background-color: #000000; /* Blue */
+    color: orange;
+    padding: 1rem 1.5rem; /* Increase padding for the button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.3rem; /* Enlarge the font size */
+  }
+  
+  button:hover {
+    background-color: rgb(255, 255, 255); /* Darker Blue on Hover */
+    color:black;
+  }
+.b{
+    margin-left: 50%;
+}

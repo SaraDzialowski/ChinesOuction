@@ -1,0 +1,25 @@
+<div class="menu">
+    <div class = "menu-item">
+        <i class="pi pi-users" style="color: #708090"></i>
+        <a  routerLink="donators" class = "item">donators list</a>
+    </div>
+    <div class = "menu-item">
+        <i class="pi pi-users" style="color: white"></i>
+        <a routerLink="purcheses" class = "item">purcheses list</a>
+    </div>
+    <div class = "menu-item">
+        <i class="pi pi-gift" style="color: #708090"></i>
+        <a routerLink="gifts" class = "item">gift list</a>
+    </div>
+    <div  class = "menu-item">
+        <i class="pi pi-home" style="color: #708090"></i>
+        <a routerLink="" class = "item">Home</a>
+    </div>
+</div>
+<br><br>
+<div style="margin-left: 33%;">
+    <p-button class="b" label="Report" (click)="getReport()" severity="warning"></p-button>
+    <p-button class="b" label="GetAllWinners" (click)="getAllWinners()" severity="warning"></p-button>
+    <p-button class="b" label="GetPurchesesDetails" (click)="GetPurchesesDetails()" severity="warning"></p-button>
+</div>
+<router-outlet></router-outlet>

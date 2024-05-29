@@ -1,0 +1,25 @@
+.menu {
+    display:inline-flex;
+    justify-content: space-around;
+    padding: 10px;
+    color:black;
+    margin-left: 30.5%;
+  }
+  
+  .menu-item {
+    padding: 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+    font-family:'Gill Sans', 'Calibri ';
+    font-size: 25px;
+    color:black;
+  }
+  .item{
+    color: black;
+  }
+  .b{
+    padding: 20px;
+  }
+  
+  

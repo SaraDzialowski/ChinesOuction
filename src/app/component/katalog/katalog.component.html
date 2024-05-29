@@ -1,0 +1,41 @@
+<p-button *ngIf = "bucket"  class="b" label="Go To Katalog" (click)="goToKatalog()" severity="warning"></p-button>
+<app-bucket *ngIf = "bucket" [(order)] = "o" ></app-bucket>
+
+<div *ngIf = "!bucket">
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="right">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText [(ngModel)]="price" (keyup)  = "Search()" placeholder="Search By Price"/>
+            </span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <p-dropdown [options]="categories" [showClear]="true" [(ngModel)]="categoryStr" placeholder="Search By Category"></p-dropdown>
+                <p-button icon="pi pi-search" [rounded]="true" severity="warning" [outlined]="true" (click)  = "Search()"></p-button>
+            </span>
+        </ng-template>
+        <ng-template pTemplate="left">
+            <button  (click) = "goToBucket()" pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2" style="background-color: black;border-color: black;"></button>
+        </ng-template>
+    <ng-template pTemplate="center">
+        Sort by price<p-button icon="pi pi-sort-alt" [rounded]="true" [text]="true" severity="secondary " (click) = "sort(true,false)"></p-button>
+        Sort by most <p-button icon="pi pi-sort-alt" [rounded]="true" [text]="true" severity="secondary " (click) = "sort(false,true)"></p-button>
+    </ng-template>
+    </p-toolbar> 
+
+    <div class="card-container" >
+        <div class="card" *ngFor="let gift of gifts" >
+                <img src="../../../assets/images/{{gift.imgUrl}}" class="card-image" />
+                <div class="card-content">
+                    <div class="card-name">{{gift.name}}</div>
+                    <div class="card-price">{{ gift.price  | currency : 'ILS'}}</div>
+                    <button *ngIf = "!gift.status" pButton pRipple icon="pi pi-plus" class=" p-button-success mr-2" (click)="addGiftToBucket(gift.id)" style="background-color: black;border-color: black; color: white;"> add to bucket</button>
+                    <button *ngIf = "gift.status" pButton pRipple class=" p-button-success mr-2" (click) = "getWinner(gift.id)" style="background-color: black;border-color: black; color: orange;" >Show winner </button>             
+                </div>
+    </div>
+</div>
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'1000ms'" [hideTransitionOptions]="'1000ms'" [showTransformOptions]="'translateX(100%)'"></p-toast>
+
+
+
+

@@ -1,0 +1,71 @@
+<div class="my-css">
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="right">
+                <span class="p-button-outlined">
+                    <p-button  label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                        (click)="openNew()" severity="warning"></p-button>
+                </span>
+        </ng-template> 
+        <ng-template pTemplate="left">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText [(ngModel)]="name" (keyup)  = "Search()" placeholder="Search By Name"/>
+            </span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText [(ngModel)]="donatorName" (keyup)  = "Search()" placeholder="Search By DonatorName"/>
+            </span>
+                
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText [(ngModel)]="numOfPurcheses" (keyup)  = "Search()" placeholder="Search By NumOfPurcheses"/>
+            </span>
+        </ng-template>
+    </p-toolbar>
+    <p-table #dt [value]="gifts" [rows]="3" [paginator]="true"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th ><i class="pi pi-users"></i></th>
+                <th pSortableColumn="id">Id<p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="Category">Category <p-sortIcon field="category"></p-sortIcon></th>
+                <th pSortableColumn="Description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="donator">Donator <p-sortIcon field="donator"></p-sortIcon></th>
+                <th pSortableColumn="Image">Image<p-sortIcon field="image"></p-sortIcon></th>
+                <th></th>
+        </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gift>
+            <tr>
+                <td><p-button icon = "pi pi-users" [outlined]="true" severity="warning" (click)="getNumOfPurcheses(gift.name)"></p-button></td>
+                <td>{{gift.id}}</td>
+                <td>{{gift.name}}</td>
+                <td>{{gift.price | currency : 'USD'}}</td>
+                <td>{{categories[gift.category]}}</td>
+                <td>{{gift.description}}</td>
+                <p *ngFor="let donator of donators" style="margin-top: 30%; margin-right: 50%;"><td *ngIf="donator.id==gift.donatorId">{{donator.fullName}}</td></p>
+                <td><img src="../../../assets/images/{{gift.imgUrl}}" class="image" /></td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editGift(gift)" style="background-color: orange; color: white; border-color: orange;"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteGift1(gift)" style="background-color: black; color: white; border-color: black;"></button>
+                    <button pButton pRipple icon="pi pi-spinner" class="p-button-rounded p-button-success mr-2"
+                        (click)="raffle(gift.id)" [disabled]="gift.status" style="background-color: black; color: white; border-color: orange;border-style: dotted; border-width: 4px;"></button>
+                    </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{gifts ? gifts.length : 0 }} gifts.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<app-gift-dialog  [giftId]="gift.id" [(giftDialog)]="giftDialog"></app-gift-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'1000ms'" [hideTransitionOptions]="'1000ms'" [showTransformOptions]="'translateX(100%)'"></p-toast>
+

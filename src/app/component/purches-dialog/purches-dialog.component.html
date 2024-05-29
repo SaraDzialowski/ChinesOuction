@@ -1,0 +1,50 @@
+<p-dialog [(visible)]="purchesDialog" [style]="{width: '450px'}" header="Gift Details" [modal]="true"
+    styleClass="p-field">
+    <ng-template pTemplate="content">
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input pInputText placeholder="Fullname" [(ngModel)]="purches.fullName" required autofocus/>
+            <small class="p-error" *ngIf="submitted && !purches.fullName">Name is required</small>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input type="text" pInputText placeholder="UserName" [(ngModel)]="purches.userName" required autofocus />
+            <small class="p-error" *ngIf="submitted && !purches.userName">UserName is required</small>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-eye-slash"></i>
+            </span>
+            <input type="text" pInputText placeholder="Password" [(ngModel)]="purches.password" required autofocus/>
+            <small class="p-error" *ngIf="submitted && !purches.password">Password is required</small>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-phone"></i>       
+            </span>
+            <input type="text" pInputText placeholder="Phone" [(ngModel)]="purches.phone" required autofocus/>     
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-at"></i>
+            </span>
+            <input type="text" pInputText placeholder="Email" [(ngModel)]="purches.email" required autofocus/>     
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePurches()"></button>
+    </ng-template>
+</p-dialog>
+
+
+

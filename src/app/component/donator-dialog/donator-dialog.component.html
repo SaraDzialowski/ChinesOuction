@@ -1,0 +1,34 @@
+<p-dialog [(visible)]="donatorDialog" [style]="{width: '450px'}" header="Donator Details" [modal]="true"
+    styleClass="p-field">
+    
+    <ng-template pTemplate="content">
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input pInputText placeholder="Fullname" [(ngModel)]="donator.fullName" required autofocus/>
+            <small class="p-error" *ngIf="submitted && !donator.fullName">Name is required</small>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-phone"></i>
+            </span>
+            <input type="text" pInputText placeholder="Phone" [(ngModel)]="donator.phone" />
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-at"></i>
+            </span>
+            <input type="email" pInputText placeholder="Email" [(ngModel)]="donator.email"/>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveDonator()"></button>
+    </ng-template>
+</p-dialog>
+
+

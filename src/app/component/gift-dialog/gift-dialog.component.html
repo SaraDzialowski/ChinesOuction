@@ -1,0 +1,50 @@
+<p-dialog [(visible)]="giftDialog" [style]="{width: '450px'}" header="Gift Details" [modal]="true" styleClass="p-field">
+    <ng-template pTemplate="content">
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-gift"></i>
+            </span>
+            <input pInputText placeholder="Name" [(ngModel)]="gift.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !gift.name">Name is required</small>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">$
+            </span>
+            <input type="number" pInputText placeholder="Price" [(ngModel)]="gift.price"/>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input type="string" pInputText placeholder="Donator" [(ngModel)]="donator" />
+            <p-dropdown [options]="donators" optionLabel="fullName" [showClear]="true" [(ngModel)]="donator"></p-dropdown>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-info"></i>
+            </span>
+            <p-dropdown [options]="categories" [showClear]="true" [(ngModel)]="category"></p-dropdown>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-bars"></i>
+            </span>
+            <input type="text" pInputText placeholder="description" [(ngModel)]="gift.description"/>
+        </div>
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-image"></i>
+            </span>
+            <input type="text" pInputText placeholder="imgUrl" [(ngModel)]="gift.imgUrl"/>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveGift()"></button>
+    </ng-template>
+</p-dialog>

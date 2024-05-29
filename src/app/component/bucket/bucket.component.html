@@ -1,0 +1,25 @@
+<div *ngIf="orderItems.length === 0">
+    <h1>No items found.</h1>
+</div>
+
+<div *ngIf="orderItems.length != 0">
+<p-toolbar styleClass="mb-4 gap-2">
+    <h3 style="margin-left: 45%;">סך הכל לתשלום:{{price}}</h3>
+    <ng-template pTemplate="right">
+        <p-button  label="Payment Details" icon="pi-id-card" class="p-button-success mr-2" (click)="paymentDetails()" severity="warning"></p-button>
+        <p-button  [disabled] = "!valid || orderItems.length === 0" label="Pay" class="p-button-success mr-2" (click)="buyOrder()" severity="warning"></p-button>
+    </ng-template>
+</p-toolbar> 
+<div class="card-container" >
+    <div class="card" *ngFor="let oi of orderItems" >
+        <img src="../../../assets/images/{{oi.gift.imgUrl}}" class="card-image" />
+             <div>{{oi.gift.name}}</div>
+             <div>{{ oi.gift.price  | currency : 'ILS'}}</div>
+             quentity: <input type="number" [(ngModel)]="oi.quentity" pInputText (change)="changeQuentity(oi)" style="width: 80px;"/>
+             <button pButton pRipple icon="pi pi-trash" class="p-button-success mr-2" 
+             (click)="deleteOrderItem(oi.id)" style="background-color: black;border-color: black; color: white;"> delete from bucket</button>
+ </div>
+</div>
+<app-payment [price] = "price" [payment] = "payment" (valid) = "setValid($event)"></app-payment>
+</div>
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'1000ms'" [hideTransitionOptions]="'1000ms'" [showTransformOptions]="'translateX(100%)'"></p-toast>

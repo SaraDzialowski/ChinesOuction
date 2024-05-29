@@ -1,0 +1,35 @@
+
+<!-- <p>סך הכל לתשלום:{{price}}</p> -->
+<p-dialog [(visible)]="payment" [style]="{width: '450px'}" header="Pay" [modal]="true"
+    styleClass="p-field">
+    <h2>Pay</h2>
+    <form>
+      <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class=" pi pi-credit-card"></i>
+      </span>
+      <input type="text" pInputText  placeholder="מספר כרטיס"  />
+      </div>
+
+      <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class=" pi pi-calendar"></i>
+      </span>
+      <input type="date" pInputText  placeholder="תוקף"   />
+      </div>
+
+ 
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-lock"></i>
+        </span>
+        <input type="password" pInputText placeholder="CVV"   />
+      </div>
+
+    </form>
+        <div>
+              <button type="button" pButton pRipple (click)="paymentvalidator()" label="paymentvalidator" style="background-color: black;border-color: orange;width: 50%;margin-left: 30%;"></button>
+              <i class="pi pi-spin pi-spinner" style="font-size: 2rem; margin-left: 48%;"></i>
+        </div>
+</p-dialog>
+

@@ -1,0 +1,17 @@
+<div *ngIf = "login1">
+<h1 style="color: orange; font-size: 100px; font-family: 'Bradley Hand ITC' ;text-align: center;">Welcome to Chines Ouction</h1><br>
+<div class="login-frame">
+    <label>userName</label>
+    <br/>
+    <input type="text" id="userName" [(ngModel)]="userName"/>
+    <br/>
+    <label>password</label>
+    <br/>
+    <input type="password" id="password" [(ngModel)]="password"/>
+    <br/>
+    <button (click)="login()">login</button>
+</div>
+</div>
+<router-outlet></router-outlet><br><br><br>
+<!-- <h1 style="font-size: 49px;">🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁</h1> -->
+

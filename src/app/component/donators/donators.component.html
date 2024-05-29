@@ -1,0 +1,82 @@
+<div class="my-css">
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="right">
+                <span class="p-button-outlined">
+                    <p-button  label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                        (click)="openNew()" severity="warning"></p-button>
+                </span>
+        </ng-template> 
+        <ng-template pTemplate="left">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="name" (keyup) = "Search()" placeholder="Search By Name"/> 
+                      </span>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="email" (keyup) = "Search()" placeholder="Search By Email"/> 
+                    </span>
+                
+                 <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input type="text" pInputText [(ngModel)]="giftName" (keyup)  = "Search()" placeholder="Search By GiftName">
+                    </span>
+        </ng-template>
+    </p-toolbar>
+    <p-table #dt [value]="donators" [rows]="5" [paginator]="true"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="fullName">FullName <p-sortIcon field="fullName"></p-sortIcon></th>
+                <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                <th pSortableColumn="gifts">Gifts <p-sortIcon field="gifts"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-donator>
+            <tr>
+                <td>{{donator.id}}</td>
+                <td>{{donator.fullName}}</td>
+                <td>{{donator.phone}}</td>
+                <td>{{donator.email}}</td>
+                <td>
+                    <!-- <p-orderList [value]="donator.gifts" [listStyle]="{ height: '25rem' }" header="Products">
+                        <ng-template let-gift pTemplate="item">
+                            <div class="flex flex-wrap p-2 align-items-center gap-3">
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-4rem shadow-2 flex-shrink-0 border-round" />
+                                <div class="flex-1 flex flex-column gap-2">
+                                    <span class="font-bold">{{ gift.name }}</span>
+                                    <div class="flex align-items-center gap-2">
+                                        <i class="pi pi-tag text-sm"></i>
+                                        <span>{{ product.category }}</span>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-900">{{ '$' + product.price }}</span>
+                            </div>
+                        </ng-template>
+                    </p-orderList>  -->
+                    
+                    <p-dropdown [options]="donator.gifts"  optionLabel="name" [showClear]="true" placeholder="DonatorGifts"></p-dropdown>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editDonator(donator)" style="background-color: orange; color: white; border-color: orange;"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteDonator1(donator)" style="background-color: black; color: white; border-color: black;"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{donators ? donators.length : 0 }} donators.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<app-donator-dialog  [donatorId]="donator.id" [(donatorDialog)]="donatorDialog"></app-donator-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p-toast [showTransformOptions]="'translateY(100%)'" [showTransitionOptions]="'1000ms'" [hideTransitionOptions]="'1000ms'" [showTransformOptions]="'translateX(100%)'"></p-toast>
+
+
